@@ -5,10 +5,10 @@ export type ButtonProps = {
   children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
-  type?: 'button' | 'submit' | 'reset';
+  width?: string;
 };
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<ButtonProps>`
     padding: 8px 16px;
     background-color: dodgerblue;
     color: white;
@@ -17,6 +17,7 @@ const StyledButton = styled.button`
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    width: ${(props) => props.width || 'fit-content'};
 
     &:hover {
         background-color: #0056b3;
@@ -32,9 +33,10 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   disabled = false,
+  width,
 }) => {
   return (
-    <StyledButton onClick={onClick} disabled={disabled}>
+    <StyledButton onClick={onClick} disabled={disabled} width={width}>
       {children}
     </StyledButton>
   );

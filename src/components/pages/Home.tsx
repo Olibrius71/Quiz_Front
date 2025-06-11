@@ -2,23 +2,12 @@ import React from 'react';
 import Container from "../atoms/Container";
 import Typography from "../atoms/Typography";
 import Button from "../atoms/Button";
+import QuizContainer from "../organisms/QuizContainer.tsx";
 
 const Home = () => {
   return (
     <Container.Base width="100%">
-      <h1>Vite + React</h1>
-
-      <Container.Base gap="1rem">
-        <Button.Base>
-          BOUTON
-        </Button.Base>
-
-        <Button.Base>
-          BOUTON
-        </Button.Base>
-      </Container.Base>
-
-      <Typography.Title>TITRE</Typography.Title>
+      <QuizContainer />
     </Container.Base>
   );
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import {useTheme} from "styled-components";
 
 const Nav = styled.nav`
   background-color: whitesmoke;// TODO $ {props => props.theme.background};
@@ -47,7 +46,6 @@ const NavLink = styled.button`
 `;
 
 const Navigation = ({ menu, currentSlug, setSlug }) => {
-  const theme = useTheme();
 
   return (
     <Nav>
