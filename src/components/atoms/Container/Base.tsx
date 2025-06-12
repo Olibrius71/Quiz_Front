@@ -1,18 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 
-interface ContainerAttributes {
-  children: React.ReactNode;
-  width?: string;
-  padding?: string;
-  backgroundColor?: string;
-  direction?: 'row' | 'column';
-  justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
-  height?: string;
-  gap?: string;
-}
-
-type ContainerProps = {
+export type ContainerProps = {
   children: React.ReactNode;
   width?: string;
   padding?: string;
@@ -38,7 +27,7 @@ const StyledContainer = styled.div<Omit<ContainerProps, 'children'>>`
   flex-wrap: wrap;
 `;
 
-export const Container: React.FC<ContainerAttributes> = ({
+export const Container: React.FC<ContainerProps> = ({
   children,
   ...props
 }) => {

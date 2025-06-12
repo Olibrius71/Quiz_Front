@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Button  from '../../atoms/Button';
+import React, {useEffect, useState} from 'react';
+import Button from '../../atoms/Button';
 
 type AnswerProps = {
   answer: string;
@@ -10,45 +10,6 @@ type AnswerProps = {
   disabled?: boolean;
 };
 
-const AnswerButton = styled(Button.Base)<{
-  $isSelected?: boolean;
-  $isCorrect?: boolean;
-  $isIncorrect?: boolean;
-}>`
-  width: 100%;
-  text-align: left;
-  justify-content: flex-start;
-  padding: 1rem;
-  font-size: 1.1rem;
-  transition: all 0.2s ease;
-
-  &:hover {
-    transform: ${({ disabled }) => !disabled && 'translateY(-2px)'};
-    box-shadow: ${({ disabled }) =>
-  !disabled && '0 4px 8px rgba(0, 0, 0, 0.1)'};
-  }
-
-  ${({ $isSelected }) =>
-  $isSelected && `
-      background-color: dodgerblue; //TODO $ {theme.primary};
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    `}
-
-  ${({ $isCorrect }) =>
-  $isCorrect && `
-      background-color: green; //TODO $ {theme.success};
-      color: white;
-    `}
-
-  ${({ $isIncorrect }) =>
-  $isIncorrect && `
-      background-color: red; //TODO $ {theme.error};
-      color: white;
-    `}
-`;
-
 const Answer: React.FC<AnswerProps> = ({
   answer,
   onClick,
@@ -57,16 +18,29 @@ const Answer: React.FC<AnswerProps> = ({
   isIncorrect = false,
   disabled = false,
 }) => {
+  // Determine variant based on state
+  const getVariant = () => {
+    if (isCorrect) return 'correct';
+    if (isIncorrect) return 'incorrect';
+    if (isSelected) return 'selected';
+    return 'default';
+  };
+  const [variant, setVariant] = useState<any>(getVariant());
+  useEffect(() => {
+    setVariant(getVariant());
+  }, [isCorrect, isIncorrect, isSelected]);
+
+  console.log({answer, isSelected, isCorrect, isIncorrect, disabled});
+
   return (
-    <AnswerButton
-      onClick={onClick}
+    <Button.Base
+      onClick={() => {setVariant(getVariant()); onClick()} }
       disabled={disabled}
-      $isSelected={isSelected}
-      $isCorrect={isCorrect}
-      $isIncorrect={isIncorrect}
+      width="23%"
+      variant={variant}
     >
       {answer}
-    </AnswerButton>
+    </Button.Base>
   );
 };
 
