@@ -11,14 +11,19 @@ export const quizListExample: QuizModel[] = [
       {
         id: 1,
         question: 'Quel est le prénom du créateur de react ?',
+        mediaUrl: imageUrlExample,
         answers: [
           {
+            id: 1,
             text: 'Jordan',
             isCorrect: true,
+            questionId: 1
           },
           {
+            id: 2,
             text: 'Cedric',
             isCorrect: false,
+            questionId: 1
           },
         ],
       },
@@ -26,7 +31,7 @@ export const quizListExample: QuizModel[] = [
   },
   {
     id: 2,
-    title: 'Mon deuxi me quiz',
+    title: 'Mon deuxième quiz',
     description: 'Un quiz un peu plus difficile',
     questions: [
       {
@@ -35,16 +40,22 @@ export const quizListExample: QuizModel[] = [
         timeToAnswer: 70,
         answers: [
           {
+            id: 22,
             text: 'React',
             isCorrect: false,
+            questionId: 2
           },
           {
+            id: 23,
             text: 'Next.js',
             isCorrect: true,
+            questionId: 2
           },
           {
+            id: 24,
             text: 'Angular',
             isCorrect: false,
+            questionId: 2
           }
         ],
       },
@@ -60,15 +71,37 @@ export const quizListExample: QuizModel[] = [
         question: 'Quel est le nom de la méthode qui permet de mettre jour l état d un composant ?',
         answers: [
           {
+            id: 31,
             text: 'render',
             isCorrect: false,
+            questionId: 3
           },
           {
+            id: 32,
             text: 'useState',
             isCorrect: true,
+            questionId: 3
           },
         ],
       },
+      {
+        id: 4,
+        question: 'A quel siècle a été inventé React ?',
+        answers: [
+          {
+            id: 41,
+            text: 'XIVe siècle',
+            isCorrect: false,
+            questionId: 4
+          },
+          {
+            id: 42,
+            text: 'XXIe siècle',
+            isCorrect: true,
+            questionId: 4
+          },
+        ],
+      }
     ],
   },
 ];

@@ -1,19 +1,19 @@
 import axios from 'axios';
 
+const apiUrl: string = "https://localhost:8003/api/";
+
 const apiClient = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: apiUrl,
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   },
-  timeout: 15500, // Optional: Set a timeout for requests
+  timeout: 15500,
 });
 
 // Request Interceptor
 apiClient.interceptors.request.use(
   async (config) => {
-    // Add Bearer token if available
-
     /*
     const token = await getToken();
     if (token) {
@@ -36,7 +36,7 @@ apiClient.interceptors.request.use(
 
 apiClient.interceptors.response.use(
   (response) => {
-    //console.log(Object.entries(response.data));
+    //console.log(Object.entries(response.data));  Pour afficher les données reçues
     return response;
   },
   (error) => {
