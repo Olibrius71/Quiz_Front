@@ -9,6 +9,7 @@ import Home from "./components/pages/Home.tsx";
 import { Navigation } from "./components/molecules";
 import CreateQuizPage from './components/organisms/CreateQuiz/CreateQuiz';
 import LoginPage from './components/pages/LoginPage';
+import MessagePage from './components/atoms/Container/MessageContainer';
 
 
 const AppContent = () => {
@@ -45,24 +46,24 @@ const AppContent = () => {
     },
   ];
 
-  const getPageContent = () => {
-    switch (currentSlug) {
-      case 'home':
-        return <Home />;
-      case 'createQuiz':
-        return isAuthenticated ? (
-          <CreateQuizPage />
-        ) : (
-          <div className="text-center p-4 text-red-500 font-semibold">
-            Veuillez vous connecter pour créer un quiz.
-          </div>
-        );
-      case 'login':
-        return <LoginPage onLoginSuccess={handleLoginSuccess} />;
-      default:
-        return <Home />;
-    }
-  };
+
+
+const getPageContent = () => {
+  switch (currentSlug) {
+    case 'home':
+      return <Home />;
+    case 'createQuiz':
+      return isAuthenticated ? (
+        <CreateQuizPage />
+      ) : (
+        <MessagePage text="Veuillez vous connecter pour créer un quiz." />
+      );
+    case 'login':
+      return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+    default:
+      return <Home />;
+  }
+};
 
   return (
     <>

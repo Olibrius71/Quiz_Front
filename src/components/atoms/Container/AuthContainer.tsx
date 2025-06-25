@@ -3,11 +3,12 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   max-width: 400px;
-  margin: 40px auto;
   padding: 30px 25px;
   background-color: ${({ theme }) => theme.background};
   border-radius: 10px;
   box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+  box-sizing: border-box;
+  /* MARGE SUPPRIMÉE */
 `;
 
 const Title = styled.h2`
@@ -18,7 +19,7 @@ const Title = styled.h2`
   color: ${({ theme }) => theme.primary};
 `;
 
-type AuthContainerProps = {
+export type AuthContainerProps = {
   title: string;
   children: React.ReactNode;
 };

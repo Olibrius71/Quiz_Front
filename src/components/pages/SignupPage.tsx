@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AuthContainer from '../organisms/Connexion/AuthContainer';
+import AuthContainer from '../atoms/Container/AuthContainer';
 import SignupForm from '../molecules/Connexion/SignupForm';
 
 export default function SignupPage() {

@@ -1,0 +1,49 @@
+import React from 'react';
+import styled from 'styled-components';
+
+type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  label?: string;
+  error?: string;
+};
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+`;
+
+const StyledTextarea = styled.textarea<{ hasError?: boolean }>`
+  padding: 8px 12px;
+  border: 1px solid ${({ hasError, theme }) => (hasError ? theme.error : '#ccc')};
+  border-radius: 4px;
+  font-size: 1rem;
+  resize: none;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.primary};
+    box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.3);
+  }
+`;
+
+const Label = styled.label`
+  margin-bottom: 4px;
+  font-weight: 600;
+`;
+
+const ErrorMsg = styled.span`
+  color: ${({ theme }) => theme.error};
+  font-size: 0.85rem;
+  margin-top: 2px;
+`;
+
+export default function Textarea({ label, error, ...props }: TextareaProps) {
+  return (
+    <Container>
+      {label && <Label htmlFor={props.id}>{label}</Label>}
+      <StyledTextarea {...props} hasError={!!error} />
+      {error && <ErrorMsg>{error}</ErrorMsg>}
+    </Container>
+  );
+}
