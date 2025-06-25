@@ -19,7 +19,7 @@ const Home = () => {
   };
 
   return (
-    <Container.Base width="100%" padding="3rem">
+    <Container.Base width="100%" padding="3rem" height="90%">
       {isDoingQuiz == false ?
         <QuizesList handleStartQuiz={startQuiz} />
         :       <QuizContainer quiz={selectedQuiz} handleLeave={resetQuiz} />

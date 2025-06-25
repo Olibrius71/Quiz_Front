@@ -7,6 +7,7 @@ const Nav = styled.nav`
   background-color: ${({ theme }) => theme.background};
   padding: 1rem;
   box-shadow: ${({ theme }) => theme.shadow};
+  height:10%;
 `;
 
 const NavContainer = styled.div`

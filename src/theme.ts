@@ -10,6 +10,7 @@ export interface AppTheme {
   info: string;
   border: string;
   shadow: string;
+  inputBackground: string;
 }
 
 export const lightTheme: AppTheme = {
@@ -23,7 +24,8 @@ export const lightTheme: AppTheme = {
   warning: '#ff9800',
   info: '#2196f3',
   border: '#e0e0e0',
-  shadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+  shadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  inputBackground: '#f5f5f5',
 };
 
 export const darkTheme: AppTheme = {
@@ -37,5 +39,7 @@ export const darkTheme: AppTheme = {
   warning: '#ffb74d',
   info: '#64b5f6',
   border: '#404040',
-  shadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+  shadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+  inputBackground: '#1e1e1es',
+
 };

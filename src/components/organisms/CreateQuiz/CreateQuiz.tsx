@@ -9,11 +9,16 @@ import QuizService from '../../../services/QuizService';
 export default function CreateQuizPage() {
   const [quiz, setQuiz] = useState<QuizModel>({
     title: '',
+    description: '',
     questions: [],
   });
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuiz({ ...quiz, title: e.target.value });
+  };
+
+  const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setQuiz({ ...quiz, description: e.target.value });
   };
 
   const addQuestion = () => {
@@ -54,9 +59,8 @@ export default function CreateQuizPage() {
     }
   };
 
-
   return (
-    <div className="p-4 space-y-6 max-w-4xl mx-auto">
+    <div className="p-4 space-y-6 max-w-4xl mx-auto h-auto">
       <h1 className="text-3xl font-bold">Créer votre Quiz</h1>
 
       <input
@@ -65,6 +69,29 @@ export default function CreateQuizPage() {
         value={quiz.title}
         onChange={handleTitleChange}
         className="w-full rounded px-3 py-2 text-sm mb-4"
+        style={{
+          border: '1px solid #a0aec0',
+          color: '#1E90FF',
+          outline: 'none',
+          transition: 'box-shadow 0.2s ease',
+        }}
+        onFocus={(e) => {
+          e.currentTarget.style.boxShadow = '0 0 0 3px rgba(30, 144, 255, 0.5)';
+          e.currentTarget.style.borderColor = '#1E90FF';
+        }}
+        onBlur={(e) => {
+          e.currentTarget.style.boxShadow = 'none';
+          e.currentTarget.style.borderColor = '#a0aec0';
+        }}
+      />
+
+
+      <textarea
+        placeholder="Description du quiz"
+        value={quiz.description}
+        onChange={handleDescriptionChange}
+        className="w-full rounded px-3 py-2 text-sm mb-4 resize-none"
+        rows={4}
         style={{
           border: '1px solid #a0aec0',
           color: '#1E90FF',

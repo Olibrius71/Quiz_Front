@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { DefaultTheme, useTheme } from 'styled-components';
 import React from 'react';
 
 export type ContainerProps = {
@@ -17,14 +17,16 @@ const StyledContainer = styled.div<Omit<ContainerProps, 'children'>>`
   height: ${({ height }) => height || 'auto'};
   margin: 0 auto;
   padding: ${({ padding }) => padding || '0 1rem'};
-  background-color: ${({ backgroundColor }) => backgroundColor || 'transparent'};
-  
-  /* Flex defaults */
+
+  background-color: ${({ backgroundColor, theme }) =>
+    backgroundColor ? backgroundColor : theme.background};
+
   display: flex;
   flex-direction: ${({ direction }) => direction || 'column'};
   justify-content: ${({ justify }) => justify || 'space-between'};
   gap: ${({ gap }) => gap || '0'};
   flex-wrap: wrap;
+  color: ${({ theme }) => theme.text};
 `;
 
 export const Container: React.FC<ContainerProps> = ({
