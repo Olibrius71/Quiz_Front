@@ -1,5 +1,6 @@
-import { Button as Base } from "./Base.tsx";
+import { Button as Base } from './Base';
+import { IconButton as ButtonIcon } from './IconButton';
 
-const Button = { Base };
+const Button = { Base, ButtonIcon };
 
 export default Button;

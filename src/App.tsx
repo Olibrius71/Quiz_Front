@@ -9,6 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import Home from "./components/pages/Home.tsx";
 import {Navigation} from "./components/molecules";
 import Test from "./components/pages/Test.tsx";
+import CreateQuizPage from './components/organisms/CreateQuiz/CreateQuiz';
 
 
 const menu = [
@@ -26,6 +27,13 @@ const menu = [
       setSlug("test");
     }
   },
+    {
+    slug: "createQuiz",
+    text: "Créer votre quiz",
+    callback: (setSlug) => {
+      setSlug("createQuiz");
+    }
+  },
 ];
 
 const AppContent = () => {
@@ -37,6 +45,8 @@ const AppContent = () => {
         return <Home />;
       case 'test':
         return <Test />;
+      case 'createQuiz':
+        return <CreateQuizPage />;
       default:
         return <Home />;
     }
