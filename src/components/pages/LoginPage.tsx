@@ -1,22 +1,14 @@
 import React, { useState } from 'react';
 import AuthContainer from '../atoms/Container/AuthContainer';
+import PageWrapper from '../atoms/Container/PageWrapper';
 import LoginForm from '../molecules/Connexion/LoginForm';
-import styled from 'styled-components';
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
+  setSlug: (slug: string) => void;
 }
 
-const PageWrapper = styled.div`
-  height: 90vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ theme }) => theme.background};
-`;
-
-export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
+export default function LoginPage({ onLoginSuccess, setSlug }: LoginPageProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>();
 
@@ -37,7 +29,12 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
   return (
     <PageWrapper>
       <AuthContainer title="Connexion">
-        <LoginForm onSubmit={handleLogin} loading={loading} error={error} />
+        <LoginForm
+          onSubmit={handleLogin}
+          loading={loading}
+          error={error}
+          setSlug={setSlug}
+        />
       </AuthContainer>
     </PageWrapper>
   );

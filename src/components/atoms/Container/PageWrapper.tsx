@@ -8,3 +8,5 @@ const PageWrapper = styled.div`
   align-items: center;
   background-color: ${({ theme }) => theme.background};
 `;
+
+export default PageWrapper;

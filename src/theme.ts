@@ -3,6 +3,7 @@ export interface AppTheme {
   backgroundHover: string;
   text: string;
   primary: string;
+  primaryHover: string;
   secondary: string;
   success: string;
   error: string;
@@ -13,11 +14,13 @@ export interface AppTheme {
   inputBackground: string;
 }
 
+
 export const lightTheme: AppTheme = {
   background: '#f7f7f7',
   backgroundHover: '#e0e0e0',
   text: '#222',
   primary: '#1976d2',
+  primaryHover: '#1565c0',
   secondary: '#f5f5f5',
   success: '#4caf50',
   error: '#d32f2f',
@@ -28,11 +31,13 @@ export const lightTheme: AppTheme = {
   inputBackground: '#f5f5f5',
 };
 
+
 export const darkTheme: AppTheme = {
   background: '#181818',
   backgroundHover: '#222',
   text: '#fff',
   primary: '#90caf9',
+  primaryHover: '#64b5f6',
   secondary: '#2d2d2d',
   success: '#81c784',
   error: '#ef5350',
@@ -40,6 +45,5 @@ export const darkTheme: AppTheme = {
   info: '#64b5f6',
   border: '#404040',
   shadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
-  inputBackground: '#1e1e1es',
-
+  inputBackground: '#1e1e1e',
 };

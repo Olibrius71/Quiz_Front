@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import Input from '../../atoms/Input/Input';
 import Button from '../../atoms/Button/Button';
 
@@ -7,6 +8,19 @@ type SignupFormProps = {
   loading?: boolean;
   error?: string;
 };
+
+const FormWrapper = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const ErrorText = styled.p`
+  color: ${({ theme }) => theme.error || 'red'};
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+`;
 
 export default function SignupForm({ onSubmit, loading, error }: SignupFormProps) {
   const [email, setEmail] = useState('');
@@ -33,7 +47,7 @@ export default function SignupForm({ onSubmit, loading, error }: SignupFormProps
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <FormWrapper onSubmit={handleSubmit}>
       <Input
         id="email"
         type="email"
@@ -58,10 +72,10 @@ export default function SignupForm({ onSubmit, loading, error }: SignupFormProps
         onChange={(e) => setConfirmPassword(e.target.value)}
         error={errors.confirmPassword}
       />
-      {error && <p style={{ color: 'red', marginBottom: 10 }}>{error}</p>}
+      {error && <ErrorText>{error}</ErrorText>}
       <Button type="submit" disabled={loading}>
         {loading ? 'Création...' : 'Créer un compte'}
       </Button>
-    </form>
+    </FormWrapper>
   );
 }

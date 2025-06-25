@@ -10,6 +10,8 @@ import { Navigation } from "./components/molecules";
 import CreateQuizPage from './components/organisms/CreateQuiz/CreateQuiz';
 import LoginPage from './components/pages/LoginPage';
 import MessagePage from './components/atoms/Container/MessageContainer';
+import SignupPage from './components/pages/SignupPage';
+
 
 
 const AppContent = () => {
@@ -46,24 +48,24 @@ const AppContent = () => {
     },
   ];
 
-
-
-const getPageContent = () => {
-  switch (currentSlug) {
-    case 'home':
-      return <Home />;
-    case 'createQuiz':
-      return isAuthenticated ? (
-        <CreateQuizPage />
-      ) : (
-        <MessagePage text="Veuillez vous connecter pour créer un quiz." />
-      );
-    case 'login':
-      return <LoginPage onLoginSuccess={handleLoginSuccess} />;
-    default:
-      return <Home />;
-  }
-};
+  const getPageContent = () => {
+    switch (currentSlug) {
+      case 'home':
+        return <Home />;
+      case 'createQuiz':
+        return isAuthenticated ? (
+          <CreateQuizPage />
+        ) : (
+          <MessagePage text="Veuillez vous connecter pour créer un quiz." />
+        );
+      case 'login':
+        return <LoginPage onLoginSuccess={handleLoginSuccess} setSlug={setCurrentSlug} />;
+      case 'signup':
+        return <SignupPage setSlug={setCurrentSlug} />;
+      default:
+        return <Home />;
+    }
+  };
 
   return (
     <>

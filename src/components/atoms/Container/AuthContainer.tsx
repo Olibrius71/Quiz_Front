@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  max-width: 400px;
+  max-width: 600px;
   padding: 30px 25px;
   background-color: ${({ theme }) => theme.background};
   border-radius: 10px;
   box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
   box-sizing: border-box;
-  /* MARGE SUPPRIMÉE */
+  width:100%;
 `;
 
 const Title = styled.h2`

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   error?: string;
+  labelColor?: string;
 };
 
 const Container = styled.div`
@@ -17,6 +18,8 @@ const StyledInput = styled.input<{ hasError?: boolean }>`
   border: 1px solid ${({ hasError, theme }) => (hasError ? theme.error : '#ccc')};
   border-radius: 4px;
   font-size: 1rem;
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.inputBackground};
   transition: border-color 0.2s ease;
 
   &:focus {
@@ -26,9 +29,10 @@ const StyledInput = styled.input<{ hasError?: boolean }>`
   }
 `;
 
-const Label = styled.label`
+const Label = styled.label<{ color?: string }>`
   margin-bottom: 4px;
   font-weight: 600;
+  color: ${({ color, theme }) => color || theme.text};
 `;
 
 const ErrorMsg = styled.span`
@@ -37,10 +41,10 @@ const ErrorMsg = styled.span`
   margin-top: 2px;
 `;
 
-export default function Input({ label, error, ...props }: InputProps) {
+export default function Input({ label, error, labelColor, ...props }: InputProps) {
   return (
     <Container>
-      {label && <Label htmlFor={props.id}>{label}</Label>}
+      {label && <Label htmlFor={props.id} color={labelColor}>{label}</Label>}
       <StyledInput {...props} hasError={!!error} />
       {error && <ErrorMsg>{error}</ErrorMsg>}
     </Container>
