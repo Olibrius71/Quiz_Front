@@ -11,7 +11,6 @@ import {Navigation} from "./components/molecules";
 import Test from "./components/pages/Test.tsx";
 import CreateQuizPage from './components/organisms/CreateQuiz/CreateQuiz';
 
-
 const menu = [
   {
     slug: "home",

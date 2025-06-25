@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTheme } from '../../../contexts/ThemeContext';
+
 
 const Nav = styled.nav`
-  background-color: whitesmoke;// TODO $ {props => props.theme.background};
+  background-color: ${({ theme }) => theme.background};
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ theme }) => theme.shadow};
 `;
 
 const NavContainer = styled.div`
@@ -18,34 +20,50 @@ const NavContainer = styled.div`
 const Logo = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
-  color: dodgerblue; // TODO $ {props => props.theme.text}; 
+  color: ${({ theme }) => theme.primary};
   cursor: pointer;
 `;
 
 const NavLinks = styled.div`
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
 `;
 
-const NavLink = styled.button`
-  color: lime; // TODO $ {props => props.theme.text};
-  text-decoration: none;
-  font-weight: normal; // TODO $ {props => props.$active ? 'bold' : 'normal'};
+const NavLink = styled.button<{ $active?: boolean }>`
+  color: ${({ theme }) => theme.text};
+  font-weight: ${({ $active }) => ($active ? 'bold' : 'normal')};
   padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  border-radius: 6px;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1rem;
+  transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: red;// TODO $ {props => props.theme.background};
+    background-color: ${({ theme }) => theme.backgroundHover};
   }
 `;
 
+const ThemeToggleButton = styled.button`
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  background-color: ${({ theme }) => theme.primary};
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.info};
+  }
+`;
+
+
 const Navigation = ({ menu, currentSlug, setSlug }) => {
+  const { toggleTheme, mode } = useTheme();
 
   return (
     <Nav>
@@ -56,10 +74,14 @@ const Navigation = ({ menu, currentSlug, setSlug }) => {
             <NavLink
               key={item.slug}
               onClick={() => item.callback(setSlug)}
+              $active={item.slug === currentSlug}
             >
               {item.text}
             </NavLink>
           ))}
+          <ThemeToggleButton onClick={toggleTheme}>
+            {mode === 'light' ? '🌙' : '☀️'}
+          </ThemeToggleButton>
         </NavLinks>
       </NavContainer>
     </Nav>

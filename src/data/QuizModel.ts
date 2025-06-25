@@ -1,7 +1,7 @@
 import QuestionModel from "./QuestionModel.ts";
 
 interface QuizModel {
-  id: number;
+  id?: number;
   title: string;
   description?: string;
   questions: QuestionModel[];

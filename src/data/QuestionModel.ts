@@ -1,7 +1,7 @@
 import AnswerModel from "./AnswerModel.ts";
 
 interface QuestionModel {
-  id: number;
+  id?: number;
   question: string;
   answers: AnswerModel[];
   timeToAnswer?: number;

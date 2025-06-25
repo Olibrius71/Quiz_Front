@@ -1,23 +1,13 @@
 import React from 'react';
 import { Trash2, PlusCircle } from 'lucide-react';
 import AnswerField from '../Answer/AnswerField';
-
-type Answer = {
-  id: number;
-  text: string;
-  correct: boolean;
-};
-
-type Question = {
-  text: string;
-  timeLimit: number;
-  answers: Answer[];
-};
+import QuestionModel from '../../../data/QuestionModel';
+import AnswerModel from '../../../data/AnswerModel';
 
 type QuestionBlockProps = {
-  question: Question;
+  question: QuestionModel;
   index: number;
-  updateQuestion: (index: number, updatedQuestion: Question) => void;
+  updateQuestion: (index: number, updatedQuestion: QuestionModel) => void;
   removeQuestion: (index: number) => void;
 };
 
@@ -27,7 +17,7 @@ export default function QuestionBlock({
   updateQuestion,
   removeQuestion,
 }: QuestionBlockProps) {
-  const updateAnswer = (aIdx: number, updatedAnswer: Answer) => {
+  const updateAnswer = (aIdx: number, updatedAnswer: AnswerModel) => {
     const newAnswers = [...question.answers];
     newAnswers[aIdx] = updatedAnswer;
     updateQuestion(index, { ...question, answers: newAnswers });
@@ -36,7 +26,7 @@ export default function QuestionBlock({
   const addAnswer = () => {
     updateQuestion(index, {
       ...question,
-      answers: [...question.answers, { id: Date.now(), text: '', correct: false }],
+      answers: [...question.answers, { id: Date.now(), text: '', isCorrect: false, questionId: question.id! }]
     });
   };
 
@@ -82,9 +72,12 @@ export default function QuestionBlock({
 
       <textarea
         placeholder="Intitulé de la question"
-        value={question.text}
+        value={question.question}
         onChange={(e) =>
-          updateQuestion(index, { ...question, text: e.target.value })
+          updateQuestion(index, {
+            ...question,
+            question: e.target.value,
+          })
         }
         className="w-full rounded-lg px-4 py-3 text-base resize-none transition"
         style={{
@@ -109,11 +102,11 @@ export default function QuestionBlock({
         type="number"
         min={5}
         placeholder="Temps limite (secondes)"
-        value={question.timeLimit}
+        value={question.timeToAnswer ?? 30}
         onChange={(e) =>
           updateQuestion(index, {
             ...question,
-            timeLimit: parseInt(e.target.value) || 5,
+            timeToAnswer: parseInt(e.target.value) || 30,
           })
         }
         className="w-full rounded-lg px-4 py-3 text-base transition"
@@ -136,16 +129,18 @@ export default function QuestionBlock({
 
       <div className="space-y-3">
         {question.answers.map((a, aIdx) => (
-          <AnswerField
-            key={a.id}
-            answer={a}
-            onChangeText={(e) => updateAnswer(aIdx, { ...a, text: e.target.value })}
-            onToggleCorrect={(e) =>
-              updateAnswer(aIdx, { ...a, correct: e.target.checked })
-            }
-            onRemove={() => removeAnswer(aIdx)}
-            disableRemove={question.answers.length <= 2}
-          />
+        <AnswerField
+          key={a.id}
+          answer={{ text: a.text, correct: a.isCorrect }}
+          onChangeText={(e) =>
+            updateAnswer(aIdx, { ...a, text: e.target.value })
+          }
+          onToggleCorrect={(e) =>
+            updateAnswer(aIdx, { ...a, isCorrect: e.target.checked })
+          }
+          onRemove={() => removeAnswer(aIdx)}
+          disableRemove={question.answers.length <= 2}
+        />
         ))}
 
         {question.answers.length < 8 && (

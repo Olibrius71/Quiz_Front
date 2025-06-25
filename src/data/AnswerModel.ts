@@ -1,5 +1,5 @@
 interface AnswerModel {
-  id: number;
+  id?: number;
   text: string;
   isCorrect: boolean;
   questionId: number;
