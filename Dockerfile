@@ -1,0 +1,26 @@
+# Use official Node image
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files first for better caching
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy all project files
+COPY . .
+
+# Build the React app
+RUN npm run build
+
+# Install serve for production
+RUN npm install -g serve
+
+# Expose port
+EXPOSE 3000
+
+# Start the app
+CMD ["serve", "-s", "build", "-l", "3000"]
