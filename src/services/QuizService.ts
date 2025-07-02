@@ -4,11 +4,15 @@ import {quizListExample} from "../data/constants.ts";
 
 class QuizService {
   async getAllQuizes() {
-    return quizListExample;
-    /*
-    const response = await apiClient.get("v1/quizz/");
-    return response.data;
-     */
+    try {
+      const response = await apiClient.get("v1/quizz/");
+      if (response.data) {
+        return response.data;
+      }
+    } catch (error) {}
+    finally {
+      return quizListExample;
+    }
   }
 
   async getQuiz(id: number) {

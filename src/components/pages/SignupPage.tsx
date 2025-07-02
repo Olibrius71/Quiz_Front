@@ -16,6 +16,8 @@ export default function SignupPage({ setSlug }: SignupPageProps) {
     setLoading(true);
     setError(undefined);
 
+
+
     setTimeout(() => {
       if (email === 'existing@example.com') {
         setError('Cet email est déjà utilisé.');

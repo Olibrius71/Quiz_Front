@@ -10,13 +10,7 @@ import QuestionBlock from '../../molecules/Question/QuestionBlock';
 import QuizFormHeader from '../../molecules/CreateQuiz/QuizFormHeader';
 import Button from '../../atoms/Button/Button';
 import ButtonGroup from '../../atoms/Button/ButtonGroup';
-
-const Title = styled.h1`
-  font-size: 1.875rem; // text-3xl
-  font-weight: bold;
-  color: ${({ theme }) => theme.text};
-  margin-bottom: 1rem;
-`;
+import Typography from "../../atoms/Typography";
 
 export default function CreateQuizPage() {
   const [quiz, setQuiz] = useState<QuizModel>({
@@ -73,7 +67,7 @@ export default function CreateQuizPage() {
 
   return (
     <Container>
-      <Title>Créer votre Quiz</Title>
+      <Typography.Title size="lg">Créer votre Quiz</Typography.Title>
 
       <QuizFormHeader
         title={quiz.title}

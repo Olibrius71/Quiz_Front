@@ -1,6 +1,7 @@
 import axios from 'axios';
+import authService from "./AuthService.ts";
 
-const apiUrl: string = "https://localhost:8003/api/";
+const apiUrl: string = "https://localhost:443/api/";
 
 const apiClient = axios.create({
   baseURL: apiUrl,
@@ -14,12 +15,11 @@ const apiClient = axios.create({
 // Request Interceptor
 apiClient.interceptors.request.use(
   async (config) => {
-    /*
-    const token = await getToken();
+
+    const token = authService.getToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-     */
 
     console.log(config.method?.toUpperCase() + " " + config.baseURL + config.url);   //Permet d'afficher l'URL entier et la méthode lors de la requête
 
